@@ -1,0 +1,35 @@
+#define LED 7        // LED connected to pin 7
+#define BUZZER 8     // Buzzer connected to pin 8
+#define BUTTON_ON 2  // Button to simulate "Turn ON"
+#define BUTTON_OFF 3 // Button to simulate "Turn OFF"
+#define BUTTON_BUZ 4 // Button to simulate "Buzzer ON"
+
+void setup() {
+    pinMode(LED, OUTPUT);
+    pinMode(BUZZER, OUTPUT);
+    pinMode(BUTTON_ON, INPUT_PULLUP);
+    pinMode(BUTTON_OFF, INPUT_PULLUP);
+    pinMode(BUTTON_BUZ, INPUT_PULLUP);
+    Serial.begin(9600);
+}
+
+void loop() {
+    if (digitalRead(BUTTON_ON) == LOW) {  
+        Serial.println("Simulated Command: Turn ON");
+        digitalWrite(LED, HIGH);  // Turn ON LED
+        delay(500);
+    }
+
+    if (digitalRead(BUTTON_OFF) == LOW) {
+        Serial.println("Simulated Command: Turn OFF");
+        digitalWrite(LED, LOW);  // Turn OFF LED
+        delay(500);
+    }
+
+    if (digitalRead(BUTTON_BUZ) == LOW) {
+        Serial.println("Simulated Command: Buzzer ON");
+        digitalWrite(BUZZER, HIGH);  // Turn ON Buzzer
+        delay(500);
+        digitalWrite(BUZZER, LOW);  // Turn OFF Buzzer
+    }
+}
